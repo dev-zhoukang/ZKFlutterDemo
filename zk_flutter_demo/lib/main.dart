@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  @override 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "This is my first flutter demo",
+      title: 'This is my first flutter demo',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter Demo'),
+          title: Text('Flutter demo'),
         ),
         body: Center(
-          child: Text('Hello World'),
+          child: Text('Flutter demo body'),
         ),
       ),
     );
