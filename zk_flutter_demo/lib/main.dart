@@ -8,6 +8,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'This is my first flutter demo',
+      theme: ThemeData(
+        primaryColor: Colors.purple,
+      ),
       home: RandomWords(),
     );
   }
@@ -23,7 +26,7 @@ class RandomWordsState extends State<RandomWords> {
       appBar: AppBar(
         title: Text('Startup Name generator'),
         actions: <Widget>[
-          new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved,)
+          IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved,)
         ],
       ),
       body: _buildSuggestions(),
@@ -32,12 +35,12 @@ class RandomWordsState extends State<RandomWords> {
 
   void _pushSaved() {
     Navigator.of(context).push(
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) {
           final Iterable<ListTile> tiles = _saved.map(
             (WordPair pair) {
-              return new ListTile(
-                title: new Text(
+              return ListTile(
+                title: Text(
                   pair.asPascalCase,
                   style: _biggerFont,
                 )
@@ -51,11 +54,11 @@ class RandomWordsState extends State<RandomWords> {
           )
           .toList();
 
-          return new Scaffold(
+          return Scaffold(
             appBar: AppBar(
               title: const Text('Saved Suggestions'),
             ),
-            body: new ListView(
+            body: ListView(
               children: divided,
             ),
           );
@@ -87,7 +90,7 @@ class RandomWordsState extends State<RandomWords> {
         pair.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: new Icon(
+      trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
       ),
