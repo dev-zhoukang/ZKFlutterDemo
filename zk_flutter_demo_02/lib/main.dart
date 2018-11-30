@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage>
         ],
       ),
       bottomNavigationBar: Material(
-        color: Colors.orange,
+        color: Colors.purple,
         child: TabBar(
           controller: mainTabController,
           tabs: <Widget>[

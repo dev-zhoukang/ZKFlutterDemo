@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/list.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -12,8 +13,8 @@ class FirstPageSatte extends State<FirstPage> {
       appBar: AppBar(
         title: Text('First Page'),
       ),
-      body: Center(
-        child: Text('This is the first page'),
+      body: Container(
+        child: ZKList(),
       ),
     );
   }
