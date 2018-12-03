@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './ZKAppBar.dart';
 
-class HomePage extends StatelessWidget {
+class ZKHomePage extends StatelessWidget {
   @override
     Widget build(BuildContext context) {
       return Scaffold(

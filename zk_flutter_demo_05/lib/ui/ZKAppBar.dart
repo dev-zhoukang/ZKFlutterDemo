@@ -9,7 +9,8 @@ class ZKAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     return Container(
-      decoration: BoxDecoration(gradient: LinearGradient(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
         colors: [
           Colors.red,
           Colors.green,

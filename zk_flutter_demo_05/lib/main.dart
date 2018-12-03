@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './ui/HomePage.dart';
+import './ui/ZKHomePage.dart';
 
 void main() {
   return runApp(MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Zhou Kang Demo',
-      home: HomePage(),
+      home: ZKHomePage(),
     );
   }
 }
