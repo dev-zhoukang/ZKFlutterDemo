@@ -51,7 +51,10 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
             onPressed: _toggleFavorite,
           ),
         ),
-        SizedBox(),
+        SizedBox(
+          width: 20,
+          child: Text('$_favoriteCount'),
+        ),
         
       ],
     );
@@ -88,11 +91,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          Text('41'),
+          FavoriteWidget(),
         ],
       ),
     );
