@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './ZKAppBar.dart';
+import './ZKHomePageBody.dart';
 
 class ZKHomePage extends StatelessWidget {
   @override
@@ -8,6 +9,7 @@ class ZKHomePage extends StatelessWidget {
         body: Column(
           children: <Widget>[
             ZKAppBar('Zhou Kang Demo'),
+            ZKHomePageBody(),
           ],
         ),
       );
