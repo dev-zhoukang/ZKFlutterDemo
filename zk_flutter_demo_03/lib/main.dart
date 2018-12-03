@@ -20,10 +20,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.only(left: 32.0,top: 32.0, right: 32.0, bottom: 8),
       child: Row(
         children: [
-         Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -77,38 +77,39 @@ class HomePage extends StatelessWidget {
     }
 
     Widget buttonSection = Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          buildButtonColumn(Icons.call, 'Call'),
-          buildButtonColumn(Icons.near_me, 'Route'),
-          buildButtonColumn(Icons.share, 'Share'),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            buildButtonColumn(Icons.call, 'Call'),
+            buildButtonColumn(Icons.near_me, 'Route'),
+            buildButtonColumn(Icons.share, 'Share'),
+          ],
+        ),
       ),
     );
 
     Widget contentTextSection = Container(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 10.0),
       child: Text(
-        '四列元素中的三个现在已经完成，只剩下图像部分。该图片可以在Creative Commons许可下在线获得， 但是它非常大，且下载缓慢。在步骤0中，您已经将该图像包含在项目中并更新了pubspec文件，所以现在可以从代码中直接引用它。',
+        '这首歌的旋律太美，似乎只有杰伦能作出这样的旋律，而阿郎的词也是配的恰到好处，丝毫没有打乱旋律的完整性，没有任何华丽的词藻，但每句都透着悲伤，编曲上更是锦上添花，钟兴民用他最拿手的弦乐点缀上零星的吉他，把整个歌曲定格在忧伤的氛围。虽然没有这样的经历，但我仍能感觉到歌中的伤心欲绝，那种失恋后自己假装快乐，其实心里满是诀别的伤痛，特别是结尾处几句略带哭腔的唱法，每次听都能戳中泪点。',
         softWrap: true,
       ),
     );
 
-    Wieget imageSection = ListView(
-      children: <Widget>[
-        Image.asset(
-          'images/lake.jpg',
-          height: 240.0,
-          fit: BoxFit.cover,
-        ),
-      ],
+    Widget imageContainer = Container(
+      child: Image.asset(
+        'images/jaychou_logo.jpg',
+        height: 240.0,
+        fit: BoxFit.cover,
+      ),
     );
 
     return Material(
-      child: Column(
+      child: ListView(
         children: <Widget>[
-          imageSection,
+          imageContainer,
           titleSection,
           contentTextSection,
           buttonSection,
