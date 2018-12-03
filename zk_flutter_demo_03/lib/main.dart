@@ -6,6 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: '周杰伦',
       theme: ThemeData(
         primarySwatch: Colors.purple,
@@ -19,28 +20,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
-      padding: EdgeInsets.all(32.0),
+      padding: const EdgeInsets.all(32.0),
       child: Row(
-        children: <Widget>[
-          Expanded(
+        children: [
+         Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 Container(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Text(
-                    '周杰伦',
+                    '菊花台，满地伤',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Text(
-                  '雨纷纷，旧故里草木深',
+                  '这是一首描写外出征战的将军与独自在家守侯的妻子互相思念的一首歌曲，歌词婉转动人，含蓄哀伤，配合JAY独门中国古典曲风，可谓经典歌曲（个人认为已超越〈东风破〉〈发如雪〉）。',
                   style: TextStyle(
                     color: Colors.grey[500],
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
                   ),
                 ),
               ],
@@ -50,7 +49,7 @@ class HomePage extends StatelessWidget {
             Icons.star,
             color: Colors.red[500],
           ),
-          Text('88'),
+          Text('41'),
         ],
       ),
     );
@@ -79,7 +78,7 @@ class HomePage extends StatelessWidget {
 
     Widget buttonSection = Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           buildButtonColumn(Icons.call, 'Call'),
           buildButtonColumn(Icons.near_me, 'Route'),
@@ -88,8 +87,33 @@ class HomePage extends StatelessWidget {
       ),
     );
 
+    Widget contentTextSection = Container(
+      padding: const EdgeInsets.all(32.0),
+      child: Text(
+        '四列元素中的三个现在已经完成，只剩下图像部分。该图片可以在Creative Commons许可下在线获得， 但是它非常大，且下载缓慢。在步骤0中，您已经将该图像包含在项目中并更新了pubspec文件，所以现在可以从代码中直接引用它。',
+        softWrap: true,
+      ),
+    );
+
+    Wieget imageSection = ListView(
+      children: <Widget>[
+        Image.asset(
+          'images/lake.jpg',
+          height: 240.0,
+          fit: BoxFit.cover,
+        ),
+      ],
+    );
+
     return Material(
-      child: titleSection,
+      child: Column(
+        children: <Widget>[
+          imageSection,
+          titleSection,
+          contentTextSection,
+          buttonSection,
+        ],
+      ),
     );
   }
 }
