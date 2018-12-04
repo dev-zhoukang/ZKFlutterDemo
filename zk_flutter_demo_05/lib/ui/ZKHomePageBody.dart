@@ -47,6 +47,7 @@ class ZKHomePageBody extends StatelessWidget {
       children: <Widget>[
         ZKHomeCell(planetModels[0]),
         ZKHomeCell(planetModels[1]),
+        ZKHomeCell(planetModels[2]),
       ],
     );
   }
