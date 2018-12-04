@@ -9,6 +9,7 @@ class ZKPlanetModel {
   final String gravity;
   final String descrition;
   final String image;
+  final String picture;
 
   const ZKPlanetModel(
       {this.id,
@@ -17,7 +18,8 @@ class ZKPlanetModel {
       this.distance,
       this.gravity,
       this.descrition,
-      this.image});
+      this.image,
+      this.picture});
 }
 
 class ZKHomeCell extends StatelessWidget {
