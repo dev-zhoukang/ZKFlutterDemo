@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './ZKPlanetDetail.dart';
 
 class ZKPlanetModel {
   final String id;
@@ -97,8 +98,11 @@ class ZKHomeCell extends StatelessWidget {
       child: planetCardContent,
     );
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/detail'),
-          child: Container(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ZKPlanetDetail(planetModel))),
+      // onTap: () => Navigator.of(context).push(PageRouteBuilder(
+      //       pageBuilder: (_, __, ___) => ZKPlanetDetail(),
+      //     )),
+      child: Container(
         margin: const EdgeInsets.symmetric(
           horizontal: 24.0,
           vertical: 16.0,
