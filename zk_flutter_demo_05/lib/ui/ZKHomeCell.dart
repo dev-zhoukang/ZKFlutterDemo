@@ -55,9 +55,7 @@ class ZKHomeCell extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          Container(
-            height: 6.0,
-          ),
+          SizedBox(height: 6.0),
           Text(
             planetModel.location,
             style: TextStyle(
@@ -65,17 +63,15 @@ class ZKHomeCell extends StatelessWidget {
               color: Colors.white70,
             ),
           ),
-          Container(
-            height: 15.0,
-          ),
+          SizedBox(height: 15.0),
           Row(
             children: <Widget>[
               Icon(Icons.my_location, color: Colors.white30, size: 15),
-              Container(width: 5),
+              SizedBox(width: 5),
               Text(planetModel.distance, style: distanceTextStyle),
-              Container(width: 15),
+              SizedBox(width: 15),
               Icon(Icons.notifications_active, color: Colors.white30, size: 15),
-              Container(width: 5),
+              SizedBox(width: 5),
               Text(planetModel.gravity, style: distanceTextStyle),
             ],
           ),
@@ -100,14 +96,16 @@ class ZKHomeCell extends StatelessWidget {
       ),
       child: planetCardContent,
     );
-
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 24.0,
-        vertical: 16.0,
-      ),
-      child: Stack(
-        children: <Widget>[planetCard, planetImageView],
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/detail'),
+          child: Container(
+        margin: const EdgeInsets.symmetric(
+          horizontal: 24.0,
+          vertical: 16.0,
+        ),
+        child: Stack(
+          children: <Widget>[planetCard, planetImageView],
+        ),
       ),
     );
   }
