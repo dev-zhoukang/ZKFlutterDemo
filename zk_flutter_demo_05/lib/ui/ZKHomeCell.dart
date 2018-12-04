@@ -35,6 +35,54 @@ class ZKHomeCell extends StatelessWidget {
       ),
     );
 
+    final distanceTextStyle = TextStyle(
+      fontSize: 12.0,
+      color: Colors.white54,
+      fontWeight: FontWeight.w100,
+    );
+
+    final planetCardContent = Container(
+      padding: EdgeInsets.only(left: 60, top: 20, right: 10),
+      constraints: BoxConstraints.expand(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            planetModel.name,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+          Container(
+            height: 6.0,
+          ),
+          Text(
+            planetModel.location,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.white70,
+            ),
+          ),
+          Container(
+            height: 15.0,
+          ),
+          Row(
+            children: <Widget>[
+              Icon(Icons.my_location, color: Colors.white30, size: 15),
+              Container(width: 5),
+              Text(planetModel.distance, style: distanceTextStyle),
+              Container(width: 15),
+              Icon(Icons.notifications_active, color: Colors.white30, size: 15),
+              Container(width: 5),
+              Text(planetModel.gravity, style: distanceTextStyle),
+            ],
+          ),
+        ],
+      ),
+    );
+
     final planetCard = Container(
       height: 124.0,
       margin: EdgeInsets.only(left: 46.0),
@@ -50,6 +98,7 @@ class ZKHomeCell extends StatelessWidget {
           ),
         ],
       ),
+      child: planetCardContent,
     );
 
     return Container(
