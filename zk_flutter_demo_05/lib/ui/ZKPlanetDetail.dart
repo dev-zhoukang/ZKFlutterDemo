@@ -21,7 +21,11 @@ class ZKPlanetDetail extends StatelessWidget {
                     color: Colors.purple,
                     fontSize: 20,
                     fontWeight: FontWeight.bold)),
-                    Image(image: AssetImage(model.image), width: 100, height: 100),
+            Hero(
+              tag: 'planet-hero-${model.id}',
+              child: Image(
+                  image: AssetImage(model.image), width: 96, height: 96),
+            ),
           ],
         )));
   }

@@ -29,10 +29,13 @@ class ZKHomeCell extends StatelessWidget {
     final planetImageView = Container(
       alignment: FractionalOffset.centerLeft,
       margin: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Image(
-        image: AssetImage(planetModel.image),
-        height: 92.0,
-        width: 92.0,
+      child: Hero(
+        tag: 'planet-hero-${planetModel.id}',
+        child: Image(
+          image: AssetImage(planetModel.image),
+          height: 92.0,
+          width: 92.0,
+        ),
       ),
     );
 
@@ -98,10 +101,10 @@ class ZKHomeCell extends StatelessWidget {
       child: planetCardContent,
     );
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ZKPlanetDetail(planetModel))),
-      // onTap: () => Navigator.of(context).push(PageRouteBuilder(
-      //       pageBuilder: (_, __, ___) => ZKPlanetDetail(),
-      //     )),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => ZKPlanetDetail(planetModel))),
       child: Container(
         margin: const EdgeInsets.symmetric(
           horizontal: 24.0,

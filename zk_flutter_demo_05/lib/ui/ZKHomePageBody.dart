@@ -13,7 +13,7 @@ class ZKHomePageBody extends StatelessWidget {
       image: 'images/mars.png',
     ),
     ZKPlanetModel(
-      id: '1',
+      id: '2',
       name: '月球',
       location: '河南省 商丘市',
       distance: '3455 km',
@@ -22,7 +22,7 @@ class ZKHomePageBody extends StatelessWidget {
       image: 'images/mars.png',
     ),
     ZKPlanetModel(
-      id: '1',
+      id: '3',
       name: '月球',
       location: '河南省 商丘市',
       distance: '3455 km',
@@ -31,7 +31,7 @@ class ZKHomePageBody extends StatelessWidget {
       image: 'images/mars.png',
     ),
     ZKPlanetModel(
-      id: '1',
+      id: '4',
       name: '月球',
       location: '河南省 商丘市',
       distance: '3455 km',
