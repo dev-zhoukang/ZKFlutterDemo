@@ -24,12 +24,12 @@ class ZKPlanetDetail extends StatelessWidget {
     );
 
     final _buildContent = ListView(
-      padding: EdgeInsets.only(top: 80, bottom: 40),
+      padding: EdgeInsets.only(top: 80, bottom: 40, left: 20, right: 20),
       children: <Widget>[
         Stack(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+              margin: EdgeInsets.only(top: 50),
               padding: EdgeInsets.only(top: 50),
               height: 150,
               decoration: BoxDecoration(
@@ -46,7 +46,7 @@ class ZKPlanetDetail extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold)),
                   SizedBox(height: 8),
-                  Text(model.descrition,
+                  Text(model.address,
                       style: TextStyle(
                           color: Colors.white54,
                           fontSize: 15,
@@ -58,13 +58,13 @@ class ZKPlanetDetail extends StatelessWidget {
                       Icon(Icons.local_airport,
                           color: Colors.white54, size: 15),
                       SizedBox(width: 4),
-                      Text(model.distance,
+                      Text(model.gender,
                           style:
                               TextStyle(color: Colors.white54, fontSize: 13)),
                       SizedBox(width: 20),
                       Icon(Icons.network_cell, color: Colors.white54, size: 15),
                       SizedBox(width: 4),
-                      Text(model.gravity,
+                      Text(model.age,
                           style:
                               TextStyle(color: Colors.white54, fontSize: 13)),
                     ],
@@ -84,7 +84,19 @@ class ZKPlanetDetail extends StatelessWidget {
               ],
             ),
           ],
-        )
+        ),
+        SizedBox(height: 10),
+        Text('简介', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white)),
+        SizedBox(height: 6),
+        Container(
+          constraints: BoxConstraints.tightFor(width: 60, height: 2),
+          color: Colors.orange,
+        ),
+        SizedBox(height: 6),
+        Container(
+          color: Color(0x990C8484),
+          child: Text(model.descrition, style: TextStyle(color: Colors.white54, fontSize: 13.5, height: 1.1))
+          ),
       ],
     );
 

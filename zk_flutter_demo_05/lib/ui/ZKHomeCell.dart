@@ -4,21 +4,21 @@ import './ZKPlanetDetail.dart';
 class ZKPlanetModel {
   final String id;
   final String name;
-  final String location;
-  final String distance;
-  final String gravity;
+  final String address;
+  final String gender;
   final String descrition;
   final String image;
   final String picture;
+  final String age;
 
   const ZKPlanetModel(
       {this.id,
       this.name,
-      this.location,
-      this.distance,
-      this.gravity,
+      this.address,
+      this.gender,
       this.descrition,
       this.image,
+      this.age,
       this.picture});
 }
 
@@ -63,7 +63,7 @@ class ZKHomeCell extends StatelessWidget {
           ),
           SizedBox(height: 6.0),
           Text(
-            planetModel.location,
+            planetModel.address,
             style: TextStyle(
               fontSize: 16.0,
               color: Colors.white70,
@@ -74,11 +74,11 @@ class ZKHomeCell extends StatelessWidget {
             children: <Widget>[
               Icon(Icons.my_location, color: Colors.white30, size: 15),
               SizedBox(width: 5),
-              Text(planetModel.distance, style: distanceTextStyle),
+              Text(planetModel.gender, style: distanceTextStyle),
               SizedBox(width: 15),
               Icon(Icons.notifications_active, color: Colors.white30, size: 15),
               SizedBox(width: 5),
-              Text(planetModel.gravity, style: distanceTextStyle),
+              Text(planetModel.age, style: distanceTextStyle),
             ],
           ),
         ],
