@@ -32,7 +32,7 @@ class ZKHomeCell extends StatelessWidget {
       alignment: FractionalOffset.centerLeft,
       margin: const EdgeInsets.symmetric(vertical: 16.0),
       child: Hero(
-        tag: 'planet-hero-${planetModel.id}',
+        tag: 'people-id-${planetModel.id}',
         child: Image(
           image: AssetImage(planetModel.image),
           height: 92.0,

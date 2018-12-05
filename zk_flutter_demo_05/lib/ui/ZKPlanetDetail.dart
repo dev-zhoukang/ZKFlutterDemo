@@ -75,18 +75,25 @@ class ZKPlanetDetail extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image(
-                  image: AssetImage(model.image),
-                  width: 90,
-                  height: 90,
-                  fit: BoxFit.cover,
+                Hero(
+                  tag: 'people-id-${model.id}',
+                  child: Image(
+                    image: AssetImage(model.image),
+                    width: 90,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
             ),
           ],
         ),
         SizedBox(height: 10),
-        Text('简介', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white)),
+        Text('简介',
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                color: Colors.white)),
         SizedBox(height: 6),
         Container(
           constraints: BoxConstraints.tightFor(width: 60, height: 2),
@@ -94,9 +101,10 @@ class ZKPlanetDetail extends StatelessWidget {
         ),
         SizedBox(height: 6),
         Container(
-          color: Color(0x990C8484),
-          child: Text(model.descrition, style: TextStyle(color: Colors.white54, fontSize: 13.5, height: 1.1))
-          ),
+            color: Color(0x990C8484),
+            child: Text(model.descrition,
+                style: TextStyle(
+                    color: Colors.white54, fontSize: 13.5, height: 1.1))),
       ],
     );
 
