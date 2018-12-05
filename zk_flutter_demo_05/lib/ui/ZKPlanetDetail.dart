@@ -108,12 +108,27 @@ class ZKPlanetDetail extends StatelessWidget {
       ],
     );
 
+    final _buildBackBtn = Container(
+      margin: EdgeInsets.only(top: 20),
+      child: FlatButton(
+        child: Icon(Icons.backspace, color: Colors.white),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
+
     return Scaffold(
       body: Container(
         constraints: BoxConstraints.expand(),
         color: Color(0xFF0C8484),
         child: Stack(
-          children: <Widget>[_buildBackground, _buildGradient, _buildContent],
+          children: <Widget>[
+            _buildBackground,
+            _buildGradient,
+            _buildContent,
+            _buildBackBtn
+          ],
         ),
       ),
     );
