@@ -72,39 +72,46 @@ class ZKPlanetDetail extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Hero(
-                  tag: 'people-id-${model.id}',
-                  child: Image(
-                    image: AssetImage(model.image),
-                    width: 90,
-                    height: 90,
-                    fit: BoxFit.cover,
-                  ),
+            Container(
+              alignment: Alignment.center,
+              child: Hero(
+                tag: 'people-id-${model.id}',
+                child: Image(
+                  image: AssetImage(model.image),
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.cover,
                 ),
-              ],
+              ),
             ),
           ],
         ),
-        SizedBox(height: 10),
-        Text('简介',
-            style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                color: Colors.white)),
-        SizedBox(height: 6),
         Container(
-          constraints: BoxConstraints.tightFor(width: 60, height: 2),
-          color: Colors.orange,
-        ),
-        SizedBox(height: 6),
-        Container(
-            color: Color(0x990C8484),
-            child: Text(model.descrition,
-                style: TextStyle(
-                    color: Colors.white54, fontSize: 13.5, height: 1.1))),
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 10),
+              Text('简介',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white)),
+              SizedBox(height: 6),
+              Container(
+                width: 60,
+                height: 2,
+                color: Colors.orange,
+              ),
+              SizedBox(height: 6),
+              Container(
+                  color: Color(0x990C8484),
+                  child: Text(model.descrition,
+                      style: TextStyle(
+                          color: Colors.white54, fontSize: 13.5, height: 1.1)))
+            ],
+          ),
+        )
       ],
     );
 
