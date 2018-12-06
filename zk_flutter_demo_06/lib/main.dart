@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dog_model.dart';
+import 'dog_cell.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ZKDemo',
-      theme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(primarySwatch: Colors.purple),
       home: ZKHomePage(title: 'ZKDemo'),
     );
   }
@@ -24,23 +25,23 @@ class ZKHomePage extends StatefulWidget {
 }
 
 class ZKHomePageState extends State<ZKHomePage> {
-  @override
-  void initState() {
-    super.initState();
-    List<Dog> initData = []
-      ..add(Dog('Ruby', 'Beijing', 'aaaaaa'))
-      ..add(Dog('Rex', 'Henan', 'werrwerw'))
-      ..add(Dog('Alex', 'Anhui', 'rwerwer'))
-      ..add((Dog('Herbert', 'Tawan', '342432')));
-    print('=========$initData');
-  }
+  List<Dog> dataSource = []
+    ..add(Dog('Ruby', 'Beijing', 'aaaaaa', rating: 3))
+    ..add(Dog('Rex', 'Henan', 'werrwerw', rating: 5))
+    ..add(Dog('Alex', 'Anhui', 'rwerwer', rating: 8))
+    ..add((Dog('Herbert', 'Tawan', '342432', rating: 10)));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      backgroundColor: Colors.black87,
-      body: Container(),
+      backgroundColor: Colors.white,
+      body: ListView.builder(
+        itemCount: dataSource.length,
+        itemBuilder: (context, index) {
+          return DogCell(dataSource[index]);
+        },
+      ),
     );
   }
 }
