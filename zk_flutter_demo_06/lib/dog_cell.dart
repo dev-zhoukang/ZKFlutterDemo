@@ -93,19 +93,3 @@ class _DogCellState extends State<DogCell> {
     );
   }
 }
-
-class ZKTextStyle {
-  static final baseTextStyle = const TextStyle(
-    color: Colors.white,
-  );
-  static final titleTextStyle =
-      baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
-  static final subtitleTextStyle = baseTextStyle.copyWith(
-    fontSize: 15,
-    fontWeight: FontWeight.w300,
-  );
-  static final subsubtitleTextStyle = baseTextStyle.copyWith(
-    fontSize: 13,
-    fontWeight: FontWeight.w200,
-  );
-}

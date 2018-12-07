@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dog_model.dart';
 import 'dog_cell.dart';
+import 'dog_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,12 +37,7 @@ class ZKHomePageState extends State<ZKHomePage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       backgroundColor: Colors.white,
-      body: ListView.builder(
-        itemCount: dataSource.length,
-        itemBuilder: (context, index) {
-          return DogCell(dataSource[index]);
-        },
-      ),
+      body: DogList(dataSource),
     );
   }
 }
