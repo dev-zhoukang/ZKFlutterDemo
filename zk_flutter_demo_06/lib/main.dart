@@ -32,20 +32,25 @@ class ZKHomePageState extends State<ZKHomePage> {
     ..add(Dog('Alex', 'Anhui', 'rwerwer', rating: 8))
     ..add((Dog('Herbert', 'Tawan', '342432', rating: 10)));
 
-  void pushToAddDogPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AddDogFormPage()));
+  Future pushToAddDogPage() async {
+    Dog newDog = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddDogFormPage()));
+    if (newDog != null) {
+      dataSource.add(newDog);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.add),
-          onPressed: pushToAddDogPage,
-        )
-      ],
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: pushToAddDogPage,
+          )
+        ],
       ),
       backgroundColor: Colors.white,
       body: Container(
