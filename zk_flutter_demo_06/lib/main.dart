@@ -37,7 +37,17 @@ class ZKHomePageState extends State<ZKHomePage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       backgroundColor: Colors.white,
-      body: DogList(dataSource),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: <Color>[Colors.red, Colors.green, Colors.purple],
+            stops: <double>[0.0, 0.6, 0.8],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: DogList(dataSource),
+      ),
     );
   }
 }
