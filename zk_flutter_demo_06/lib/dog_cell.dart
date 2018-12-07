@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dog_model.dart';
+import 'dog_detail.dart';
 
 class DogCell extends StatefulWidget {
   final Dog dogModel;
@@ -77,9 +78,17 @@ class _DogCellState extends State<DogCell> {
     renderDogPic();
   }
 
+  void showDogDetailPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+      return DogDetailPage(widget.dogModel);
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return InkWell(
+      onTap: showDogDetailPage,
+        child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
         height: 115.0,
@@ -90,6 +99,6 @@ class _DogCellState extends State<DogCell> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
