@@ -6,68 +6,89 @@ class DogCell extends StatefulWidget {
   DogCell(this.dogModel);
 
   @override
-  DogCellState createState() => DogCellState();
+  _DogCellState createState() => _DogCellState();
 }
 
-class DogCellState extends State<DogCell> {
-  _buildAvatarView() {
+class _DogCellState extends State<DogCell> {
+  String imageUrl;
+
+  Widget get dogImage {
     return Container(
-      margin: EdgeInsets.only(top: 15.0, left: 20.0),
-      height: 80,
-      width: 80,
+      width: 100.0,
+      height: 100.0,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        image: DecorationImage(
-            image: AssetImage('images/dog_default.png'), fit: BoxFit.cover),
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            image: NetworkImage(imageUrl ?? ''),
+            fit: BoxFit.cover,
+          )),
+    );
+  }
+
+  Widget get dogCard {
+    return Container(
+      width: 290.0,
+      height: 115.0,
+      child: Card(
+        color: Colors.black87,
+        child: Padding(
+          padding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 64.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(widget.dogModel.name,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline
+                      .copyWith(color: Colors.white)),
+              Text(widget.dogModel.location,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subhead
+                      .copyWith(color: Colors.white)),
+              Row(
+                children: <Widget>[
+                  Icon(Icons.star, color: Colors.white),
+                  Text(': ${widget.dogModel.rating} / 10',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle
+                          .copyWith(color: Colors.white))
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
 
-  _buildContentView() {
-    return Container(
-      margin: EdgeInsets.only(left: 70, right: 30, top: 10, bottom: 10),
-      padding: EdgeInsets.only(left: 40, top: 15, bottom: 10, right: 20),
-      decoration: BoxDecoration(
-        color: Colors.orange,
-        borderRadius: BorderRadius.circular(7),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10.0,
-              offset: Offset(5.0, 10.0)),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            widget.dogModel.name,
-            style: ZKTextStyle.titleTextStyle,
-          ),
-          SizedBox(height: 3),
-          Text(widget.dogModel.location, style: ZKTextStyle.subtitleTextStyle),
-          SizedBox(height: 3),
-          Row(
-            children: <Widget>[
-              Icon(Icons.star, size: 15, color: Colors.white),
-              Text(' : ${widget.dogModel.rating} / 10', style: ZKTextStyle.subsubtitleTextStyle),
-            ],
-          )
-        ],
-      ),
-    );
+  void renderDogPic() async {
+    await widget.dogModel.getImageUrl();
+    setState(() {
+      imageUrl = widget.dogModel.imageUrl;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    renderDogPic();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 110,
-      child: Stack(
-        children: <Widget>[
-          _buildContentView(),
-          _buildAvatarView(),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Container(
+        height: 115.0,
+        child: Stack(
+          children: <Widget>[
+            Positioned(left: 50.0, child: dogCard),
+            Positioned(top: 7.5, child: dogImage),
+          ],
+        ),
       ),
     );
   }
@@ -77,8 +98,8 @@ class ZKTextStyle {
   static final baseTextStyle = const TextStyle(
     color: Colors.white,
   );
-  static final titleTextStyle = 
-  baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
+  static final titleTextStyle =
+      baseTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
   static final subtitleTextStyle = baseTextStyle.copyWith(
     fontSize: 15,
     fontWeight: FontWeight.w300,
