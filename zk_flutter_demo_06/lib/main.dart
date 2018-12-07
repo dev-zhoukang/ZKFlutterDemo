@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dog_model.dart';
-import 'dog_cell.dart';
 import 'dog_list.dart';
+import 'new_dog_form.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,10 +32,21 @@ class ZKHomePageState extends State<ZKHomePage> {
     ..add(Dog('Alex', 'Anhui', 'rwerwer', rating: 8))
     ..add((Dog('Herbert', 'Tawan', '342432', rating: 10)));
 
+  void pushToAddDogPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AddDogFormPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text(widget.title),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: pushToAddDogPage,
+        )
+      ],
+      ),
       backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(
