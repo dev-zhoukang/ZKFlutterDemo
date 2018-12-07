@@ -37,6 +37,9 @@ class ZKHomePageState extends State<ZKHomePage> {
         context, MaterialPageRoute(builder: (context) => AddDogFormPage()));
     if (newDog != null) {
       dataSource.add(newDog);
+      setState(() {
+        dataSource = dataSource;
+      });
     }
   }
 
