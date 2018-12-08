@@ -11,6 +11,7 @@ class DogDetailPage extends StatefulWidget {
 
 class _DogDetailPageState extends State<DogDetailPage> {
   final double dogAvatarSize = 150.0;
+  double ratingSliderValue = 0.0;
 
   Widget get dogImage {
     return Container(
@@ -47,8 +48,46 @@ class _DogDetailPageState extends State<DogDetailPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(Icons.star, color: Colors.white, size: 40.0),
-        Text('${widget.dog.rating} / 10', style: Theme.of(context).textTheme.display2),
+        Text('${widget.dog.rating} / 10',
+            style: Theme.of(context).textTheme.display2),
       ],
+    );
+  }
+
+  Widget get ratingSlider {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Flexible(
+          flex: 1,
+          child: Slider(
+          onChanged: (value) {
+            print(value);
+            setState(() {
+              ratingSliderValue = value;
+            });
+          },
+          value: ratingSliderValue,
+        ),
+        ),
+        Text('${(ratingSliderValue*10).toInt()}'),
+      ],
+    );
+  }
+
+  void submitBtnAction (BuildContext context) {
+    print('submitBtnAction');
+    Navigator.pop(context, {'rating': ratingSliderValue});
+  }
+
+  Widget get submitBtn {
+    return Container(
+      child: RaisedButton(
+        onPressed: () => submitBtnAction(context),
+        color: Colors.purple,
+        child: Text('提交', style: TextStyle(color: Colors.white)),
+      ),
     );
   }
 
@@ -56,13 +95,9 @@ class _DogDetailPageState extends State<DogDetailPage> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.0),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: <Color>[
-            Colors.red,
-            Colors.orange
-          ],
-        )
-      ),
+          gradient: LinearGradient(
+        colors: <Color>[Colors.red, Colors.orange],
+      )),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -70,10 +105,13 @@ class _DogDetailPageState extends State<DogDetailPage> {
           Text('${widget.dog.name}', style: TextStyle(fontSize: 32.0)),
           Text('${widget.dog.location}', style: TextStyle(fontSize: 20.0)),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
             child: Text('${widget.dog.description}'),
           ),
           rating,
+          ratingSlider,
+          submitBtn,
         ],
       ),
     );

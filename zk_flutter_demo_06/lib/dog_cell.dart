@@ -78,10 +78,11 @@ class _DogCellState extends State<DogCell> {
     renderDogPic();
   }
 
-  void showDogDetailPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context){
+  void showDogDetailPage() async {
+    var result = await Navigator.push(context, MaterialPageRoute(builder: (context){
       return DogDetailPage(widget.dogModel);
     }));
+    print('return result => $result');
   }
 
   @override
