@@ -77,7 +77,13 @@ class _DogDetailPageState extends State<DogDetailPage> {
   }
 
   void submitBtnAction(BuildContext context) {
-    Navigator.pop(context, {'rating': ratingSliderValue});
+    if (ratingSliderValue < 10) {
+      _ratingErrorDialog();
+    }
+    else {
+      Navigator.pop(context, {'rating': ratingSliderValue});      
+    }
+
   }
 
   Widget get submitBtn {
@@ -113,6 +119,24 @@ class _DogDetailPageState extends State<DogDetailPage> {
           submitBtn,
         ],
       ),
+    );
+  }
+
+  Future<Null> _ratingErrorDialog() async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Error!'),
+          content: Text('They are good dogs'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Try again'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
     );
   }
 
