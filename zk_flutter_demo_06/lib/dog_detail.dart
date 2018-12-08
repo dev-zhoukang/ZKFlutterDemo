@@ -62,22 +62,21 @@ class _DogDetailPageState extends State<DogDetailPage> {
         Flexible(
           flex: 1,
           child: Slider(
-          onChanged: (value) {
-            print(value);
-            setState(() {
-              ratingSliderValue = value;
-            });
-          },
-          value: ratingSliderValue,
+            onChanged: (value) {
+              print(value);
+              setState(() {
+                ratingSliderValue = value;
+              });
+            },
+            value: ratingSliderValue,
+          ),
         ),
-        ),
-        Text('${(ratingSliderValue*10).toInt()}'),
+        Text('${(ratingSliderValue * 10).toInt()}'),
       ],
     );
   }
 
-  void submitBtnAction (BuildContext context) {
-    print('submitBtnAction');
+  void submitBtnAction(BuildContext context) {
     Navigator.pop(context, {'rating': ratingSliderValue});
   }
 

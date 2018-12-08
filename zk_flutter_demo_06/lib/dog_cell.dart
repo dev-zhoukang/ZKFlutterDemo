@@ -79,7 +79,8 @@ class _DogCellState extends State<DogCell> {
   }
 
   void showDogDetailPage() async {
-    var result = await Navigator.push(context, MaterialPageRoute(builder: (context){
+    var result =
+        await Navigator.push(context, MaterialPageRoute(builder: (context) {
       return DogDetailPage(widget.dogModel);
     }));
     print('return result => $result');
@@ -88,18 +89,18 @@ class _DogCellState extends State<DogCell> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: showDogDetailPage,
+        onTap: showDogDetailPage,
         child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Container(
-        height: 115.0,
-        child: Stack(
-          children: <Widget>[
-            Positioned(left: 50.0, child: dogCard),
-            Positioned(top: 7.5, child: dogImage),
-          ],
-        ),
-      ),
-    ));
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Container(
+            height: 115.0,
+            child: Stack(
+              children: <Widget>[
+                Positioned(left: 50.0, child: dogCard),
+                Positioned(top: 7.5, child: dogImage),
+              ],
+            ),
+          ),
+        ));
   }
 }
