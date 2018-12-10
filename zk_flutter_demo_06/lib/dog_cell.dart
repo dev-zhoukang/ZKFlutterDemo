@@ -14,7 +14,7 @@ class _DogCellState extends State<DogCell> {
   String imageUrl;
 
   Widget get dogImage {
-    return Container(
+    final dogAvatar = Container(
       width: 100.0,
       height: 100.0,
       decoration: BoxDecoration(
@@ -23,6 +23,36 @@ class _DogCellState extends State<DogCell> {
             image: NetworkImage(imageUrl ?? ''),
             fit: BoxFit.cover,
           )),
+    );
+
+    final dogAvatarPlaceholder = Container(
+      height: 100.0,
+      width: 100.0,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: <Color>[
+            Colors.black54,
+            Colors.black,
+            Colors.blueGrey[500],
+          ],
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        'DOG',
+        textAlign: TextAlign.center,
+      ),
+    );
+    return AnimatedCrossFade(
+      firstChild: dogAvatarPlaceholder,
+      secondChild: dogAvatar,
+      crossFadeState: imageUrl == null
+          ? CrossFadeState.showFirst
+          : CrossFadeState.showSecond,
+          duration: Duration(milliseconds: 1000),
     );
   }
 
