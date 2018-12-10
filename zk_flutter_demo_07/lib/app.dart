@@ -1,5 +1,5 @@
-import 'package:advanced_app/screens/auth_screen.dart';
-import 'package:advanced_app/screens/home_screen.dart';
+import './screens/auth_screen.dart';
+import './screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRootWidget extends StatefulWidget {
