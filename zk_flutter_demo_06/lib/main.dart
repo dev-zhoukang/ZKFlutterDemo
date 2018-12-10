@@ -34,7 +34,9 @@ class ZKHomePageState extends State<ZKHomePage> {
 
   Future pushToAddDogPage() async {
     Dog newDog = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddDogFormPage()));
+      context,
+      MaterialPageRoute(builder: (context) => AddDogFormPage()),
+    );
     if (newDog != null) {
       dataSource.add(newDog);
       setState(() {
@@ -59,7 +61,11 @@ class ZKHomePageState extends State<ZKHomePage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: <Color>[Colors.red, Colors.green, Colors.purple],
+            colors: <Color>[
+              Colors.red,
+              Colors.green,
+              Colors.purple,
+            ],
             stops: <double>[0.0, 0.6, 0.8],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

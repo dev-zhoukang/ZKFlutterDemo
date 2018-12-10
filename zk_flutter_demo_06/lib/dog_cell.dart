@@ -89,18 +89,19 @@ class _DogCellState extends State<DogCell> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: showDogDetailPage,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Container(
-            height: 115.0,
-            child: Stack(
-              children: <Widget>[
-                Positioned(left: 50.0, child: dogCard),
-                Positioned(top: 7.5, child: dogImage),
-              ],
-            ),
+      onTap: showDogDetailPage,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Container(
+          height: 115.0,
+          child: Stack(
+            children: <Widget>[
+              Positioned(left: 50.0, child: dogCard),
+              Positioned(top: 7.5, child: dogImage),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

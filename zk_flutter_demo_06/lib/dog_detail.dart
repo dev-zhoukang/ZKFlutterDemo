@@ -79,11 +79,9 @@ class _DogDetailPageState extends State<DogDetailPage> {
   void submitBtnAction(BuildContext context) {
     if (ratingSliderValue < 10) {
       _ratingErrorDialog();
+    } else {
+      Navigator.pop(context, {'rating': ratingSliderValue});
     }
-    else {
-      Navigator.pop(context, {'rating': ratingSliderValue});      
-    }
-
   }
 
   Widget get submitBtn {
@@ -100,9 +98,11 @@ class _DogDetailPageState extends State<DogDetailPage> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 32.0),
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: <Color>[Colors.red, Colors.orange],
-      )),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          colors: <Color>[Colors.red, Colors.orange],
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
