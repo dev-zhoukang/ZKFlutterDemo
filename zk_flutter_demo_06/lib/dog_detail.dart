@@ -14,32 +14,35 @@ class _DogDetailPageState extends State<DogDetailPage> {
   double _ratingSliderValue = 0.0;
 
   Widget get dogImage {
-    return Container(
-      width: dogAvatarSize,
-      height: dogAvatarSize,
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          boxShadow: <BoxShadow>[
-            const BoxShadow(
-                offset: const Offset(1.0, 2.0),
-                blurRadius: 2.0,
-                spreadRadius: -1.0,
-                color: const Color(0x33000000)),
-            const BoxShadow(
-                offset: const Offset(2.0, 1.0),
-                blurRadius: 3.0,
-                spreadRadius: 0.0,
-                color: const Color(0x24000000)),
-            const BoxShadow(
-                offset: const Offset(3.0, 1.0),
-                blurRadius: 4.0,
-                spreadRadius: 2.0,
-                color: const Color(0x1F000000)),
-          ],
-          image: DecorationImage(
-            image: NetworkImage(widget.dog.imageUrl),
-            fit: BoxFit.cover,
-          )),
+    return Hero(
+      tag: widget.dog,
+      child: Container(
+        width: dogAvatarSize,
+        height: dogAvatarSize,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: <BoxShadow>[
+              const BoxShadow(
+                  offset: const Offset(1.0, 2.0),
+                  blurRadius: 2.0,
+                  spreadRadius: -1.0,
+                  color: const Color(0x33000000)),
+              const BoxShadow(
+                  offset: const Offset(2.0, 1.0),
+                  blurRadius: 3.0,
+                  spreadRadius: 0.0,
+                  color: const Color(0x24000000)),
+              const BoxShadow(
+                  offset: const Offset(3.0, 1.0),
+                  blurRadius: 4.0,
+                  spreadRadius: 2.0,
+                  color: const Color(0x1F000000)),
+            ],
+            image: DecorationImage(
+              image: NetworkImage(widget.dog.imageUrl),
+              fit: BoxFit.cover,
+            )),
+      ),
     );
   }
 
@@ -83,8 +86,8 @@ class _DogDetailPageState extends State<DogDetailPage> {
       _ratingErrorDialog();
     } else {
       setState(() {
-      widget.dog.rating = _ratingSliderValue.toInt();
-    });
+        widget.dog.rating = _ratingSliderValue.toInt();
+      });
       Navigator.pop(context, {'rating': _ratingSliderValue});
     }
   }

@@ -14,15 +14,18 @@ class _DogCellState extends State<DogCell> {
   String imageUrl;
 
   Widget get dogImage {
-    final dogAvatar = Container(
-      width: 100.0,
-      height: 100.0,
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: NetworkImage(imageUrl ?? ''),
-            fit: BoxFit.cover,
-          )),
+    final dogAvatar = Hero(
+      tag: widget.dogModel,
+      child: Container(
+        width: 100.0,
+        height: 100.0,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: NetworkImage(imageUrl ?? ''),
+              fit: BoxFit.cover,
+            )),
+      ),
     );
 
     final dogAvatarPlaceholder = Container(
@@ -52,7 +55,7 @@ class _DogCellState extends State<DogCell> {
       crossFadeState: imageUrl == null
           ? CrossFadeState.showFirst
           : CrossFadeState.showSecond,
-          duration: Duration(milliseconds: 1000),
+      duration: Duration(milliseconds: 1000),
     );
   }
 
