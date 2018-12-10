@@ -11,7 +11,7 @@ class DogDetailPage extends StatefulWidget {
 
 class _DogDetailPageState extends State<DogDetailPage> {
   final double dogAvatarSize = 150.0;
-  double ratingSliderValue = 0.0;
+  double _ratingSliderValue = 0.0;
 
   Widget get dogImage {
     return Container(
@@ -62,25 +62,30 @@ class _DogDetailPageState extends State<DogDetailPage> {
         Flexible(
           flex: 1,
           child: Slider(
+            min: 0.0,
+            max: 15.0,
             onChanged: (value) {
               print(value);
               setState(() {
-                ratingSliderValue = value;
+                _ratingSliderValue = value;
               });
             },
-            value: ratingSliderValue,
+            value: _ratingSliderValue,
           ),
         ),
-        Text('${(ratingSliderValue * 10).toInt()}'),
+        Text('${_ratingSliderValue.toInt()}'),
       ],
     );
   }
 
   void submitBtnAction(BuildContext context) {
-    if (ratingSliderValue < 10) {
+    if (_ratingSliderValue.toInt() < 10) {
       _ratingErrorDialog();
     } else {
-      Navigator.pop(context, {'rating': ratingSliderValue});
+      setState(() {
+      widget.dog.rating = _ratingSliderValue.toInt();
+    });
+      Navigator.pop(context, {'rating': _ratingSliderValue});
     }
   }
 
