@@ -1,6 +1,7 @@
 import './models/app_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class AppStateContainer extends StatefulWidget {
   final AppState state;
@@ -25,6 +26,19 @@ class _AppStateContainerState extends State<AppStateContainer> {
   @override
   void initState() {
     super.initState();
+    if (widget.state != null) {
+      state = widget.state;
+    } else {
+      state = AppState.loading();
+      startCountdown();
+    }
+  }
+
+  Future<Null> startCountdown() async {
+    const timeOut = const Duration(seconds: 5);
+    Timer(timeOut, () {
+      setState(() => state.isLoading = false);
+    });
   }
 
   @override
