@@ -1,7 +1,9 @@
-import 'package:advanced_app/app.dart';
-import 'package:advanced_app/app_state_container.dart';
+import './app.dart';
 import 'package:flutter/material.dart';
+import './app_state_container.dart';
 
 void main() {
-  runApp(new AppRootWidget());
+  runApp(AppStateContainer(
+    child: new AppRootWidget(),
+  ));
 }

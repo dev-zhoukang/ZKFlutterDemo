@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/app_state.dart';
+import '../app_state_container.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -32,12 +33,17 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    var container = AppStateContainer.of(context);
+    appState = container.state;
+    Widget body = _pageToDisplay;
+
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Suite'),
+        title: new Text('FlutterDemo'),
       ),
       body: new Center(
-        child: new Text(appState.user.displayName),
+        child: body,
       ),
     );
   }

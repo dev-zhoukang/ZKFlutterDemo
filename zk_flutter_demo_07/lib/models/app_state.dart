@@ -1,5 +1,9 @@
+import '../models/user.dart';
+
 class AppState {
   bool isLoading;
+  User user;
+
   AppState({
     this.isLoading = false,
     this.user,
@@ -9,6 +13,6 @@ class AppState {
 
   @override
     String toString() {
-      return 'AppState{isLoading: $isLoading, user: ${user?.displayName ?? 'null'}}';
+      return 'AppState{isLoading: $isLoading, user: ${user?.nickName ?? 'null'}}';
     }
 }
