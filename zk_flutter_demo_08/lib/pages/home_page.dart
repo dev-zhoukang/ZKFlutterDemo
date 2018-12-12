@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../containers/counter/counter.dart';
+import '../containers/counter/increase_counter.dart';
 
 class HomePage extends StatelessWidget {
   final String title;
@@ -15,17 +17,11 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('You have click the button many times'),
-            Text(
-              '0',
-              style: Theme.of(context).textTheme.display1,
-            ),
+            Counter(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => null,
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: IncreseCountButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
