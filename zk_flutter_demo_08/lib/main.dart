@@ -4,6 +4,7 @@ import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import './models/app_state.dart';
 import './reducers/app_reducer.dart';
+import 'package:redux_logging/redux_logging.dart';
 
 void main() => runApp(MainApp());
 
@@ -11,7 +12,7 @@ class MainApp extends StatelessWidget {
   final store = Store<AppState>(
     appReducer,
     initialState: AppState(),
-    middleware: [],
+    middleware: [LoggingMiddleware.printer()],
   );
 
   @override
