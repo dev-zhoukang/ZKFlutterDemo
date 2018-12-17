@@ -10,16 +10,15 @@ class MainApp extends StatelessWidget {
       showSemanticsDebugger: false,
       title: 'CCTV NRES',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('CCTV News'),
-        ),
-        body: Column(
-          children: <Widget>[
-            HomeNewsCell(),
-            HomeNewsCell(),
-          ],
-        ),
-      ),
+          appBar: AppBar(
+            title: Text('CCTV News'),
+          ),
+          body: ListView.builder(
+            itemCount: 100,
+            itemBuilder: (context, index) {
+              return HomeNewsCell();
+            },
+          )),
     );
   }
 }
