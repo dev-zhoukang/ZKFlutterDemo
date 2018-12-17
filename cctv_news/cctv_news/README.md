@@ -1,4 +1,4 @@
-# news_01
+# cctv_news
 
 A new Flutter project.
 
