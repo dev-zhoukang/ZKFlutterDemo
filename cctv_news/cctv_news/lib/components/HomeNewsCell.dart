@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:cctv_news/models/NewsModel.dart';
 
 class HomeNewsCell extends StatelessWidget {
+  final NewsModel model;
+  HomeNewsCell({
+    @required this.model,
+  });
+
   Widget get _cellContentView {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -10,7 +16,7 @@ class HomeNewsCell extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                '继山东编导艺考联考被曝疑似出现泄题和作弊的情况。江西编导艺考联考也被曝疑似出现泄题和作弊的情况。',
+                model.title,
                 style: TextStyle(
                   fontSize: 15.0,
                   color: Color(0xff111111),
@@ -49,10 +55,11 @@ class HomeNewsCell extends StatelessWidget {
           width: 115.0,
           margin: EdgeInsets.only(top: 3),
           decoration: BoxDecoration(
-            color: Colors.green,
+            color: Color(0xffeaeaea),
             borderRadius: BorderRadius.circular(5.0),
             image: DecorationImage(
-              image: AssetImage('images/news_image.jpg'),
+              // image: AssetImage('images/news_image.jpg'),
+              image: NetworkImage(model.imgUrlString),
               fit: BoxFit.cover,
             ),
           ),
