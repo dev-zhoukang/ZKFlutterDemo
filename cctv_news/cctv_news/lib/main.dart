@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/home/HomeNewsCell.dart';
+import 'package:cctv_news/components/HomeNewsCell.dart';
+import 'package:cctv_news/pages/MainTabPage.dart';
 
 void main() => runApp(MainApp());
 
@@ -8,17 +9,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
       title: 'CCTV NRES',
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('CCTV News'),
-          ),
-          body: ListView.builder(
-            itemCount: 100,
-            itemBuilder: (context, index) {
-              return HomeNewsCell();
-            },
-          )),
+      home: MainTabPage(),
     );
   }
 }
