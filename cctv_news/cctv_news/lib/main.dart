@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/components/HomeNewsCell.dart';
 import 'package:cctv_news/pages/MainTabPage.dart';
 
 void main() => runApp(MainApp());

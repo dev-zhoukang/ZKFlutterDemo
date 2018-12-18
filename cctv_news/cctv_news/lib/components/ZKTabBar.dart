@@ -56,7 +56,7 @@ class ZKTab extends StatelessWidget {
           Icon(icon),
           Text(
             this.title,
-            style: TextStyle(fontSize: 11.0, height: 0.9),
+            style: TextStyle(fontSize: 11.5, height: 0.9, fontWeight: FontWeight.w400),
           ),
         ],
       ),
