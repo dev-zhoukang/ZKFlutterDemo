@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cctv_news/components/ZKTabBar.dart';
+import 'package:cctv_news/pages/HomeNewsListPage.dart';
 
 class MainTabPage extends StatefulWidget {
   @override
@@ -31,6 +32,10 @@ class _MainTabPageState extends State<MainTabPage>
     ),
   ];
 
+  List<Widget> get _pages {
+    return _tabs.map((_) => HomeNewsListPage()).toList();
+  }
+
   TabController _tabController;
 
   @override
@@ -54,11 +59,7 @@ class _MainTabPageState extends State<MainTabPage>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: _tabs.map((ZKTab tab) {
-          return Center(
-            child: Text(tab.title),
-          );
-        }).toList(),
+        children: _pages,
       ),
     );
   }
