@@ -4,6 +4,7 @@ import 'package:cctv_news/models/NewsModel.dart';
 import 'package:dio/dio.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:cctv_news/components/WeatherTipsWidget.dart';
 
 class HomeNewsListPage extends StatefulWidget {
   @override
@@ -47,6 +48,31 @@ class HomeNewsListPageState extends State<HomeNewsListPage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget _buildListHeaderView() {
+      return Column(
+        children: <Widget>[
+          Container(
+            constraints: BoxConstraints.expand(height: 200.0),
+            color: Color(0xeaeaea),
+            child: Swiper(
+              loop: true,
+              autoplay: true,
+              autoplayDisableOnInteraction: false,
+              itemCount: 3,
+              pagination: SwiperPagination(),
+              itemBuilder: (context, index) {
+                return Image.network(
+                  _carouseImageUrls[index],
+                  fit: BoxFit.cover,
+                );
+              },
+            ),
+          ),
+          WeatherTipsWidget(),
+        ],
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('新闻列表'),
@@ -60,23 +86,7 @@ class HomeNewsListPageState extends State<HomeNewsListPage> {
           itemCount: _dataSource.length,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return Container(
-                constraints: BoxConstraints.expand(height: 200.0),
-                color: Color(0xeaeaea),
-                child: Swiper(
-                  loop: true,
-                  autoplay: true,
-                  autoplayDisableOnInteraction: false,
-                  itemCount: 3,
-                  pagination: SwiperPagination(),
-                  itemBuilder: (context, index) {
-                    return Image.network(
-                      _carouseImageUrls[index],
-                      fit: BoxFit.cover,
-                    );
-                  },
-                ),
-              );
+              return _buildListHeaderView();
             }
             index -= 1;
             return HomeNewsCell(
