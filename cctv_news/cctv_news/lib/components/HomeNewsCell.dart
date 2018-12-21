@@ -9,42 +9,47 @@ class HomeNewsCell extends StatelessWidget {
 
   Widget get _cellContentView {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                model.title,
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Color(0xff111111),
+          child: Container(
+            height: 90.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  model.title,
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: Color(0xff111111),
+                    fontWeight: FontWeight.w400,
+                  ),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Container(
-                width: 50.0,
-                height: 20.0,
-                margin: EdgeInsets.only(top: 6),
-                child: ButtonTheme(
-                  buttonColor: Color(0xff1C64CF),
-                  shape: StadiumBorder(),
-                  child: RaisedButton(
-                    onPressed: () => print('test'),
-                    padding: EdgeInsets.all(2.0),
-                    child: Text(
-                      '听新闻',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11.0,
-                          fontWeight: FontWeight.w300),
+                Container(
+                  width: 50.0,
+                  height: 20.0,
+                  margin: EdgeInsets.only(top: 6),
+                  child: ButtonTheme(
+                    buttonColor: Color(0xff1C64CF),
+                    shape: StadiumBorder(),
+                    child: RaisedButton(
+                      onPressed: () => print('test'),
+                      padding: EdgeInsets.all(2.0),
+                      child: Text(
+                        '听新闻',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11.0,
+                            fontWeight: FontWeight.w300),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         SizedBox(
@@ -53,7 +58,6 @@ class HomeNewsCell extends StatelessWidget {
         Container(
           height: 85.0,
           width: 115.0,
-          margin: EdgeInsets.only(top: 3),
           decoration: BoxDecoration(
             color: Color(0xffeaeaea),
             borderRadius: BorderRadius.circular(5.0),
@@ -70,22 +74,26 @@ class HomeNewsCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 115.0,
-      child: Column(
-        children: <Widget>[
-          // 内容视图
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-            child: _cellContentView,
-          ),
-          // 分割线
-          Container(
-            margin: EdgeInsets.only(top: 4.0),
-            color: Color(0xffeaeaea),
-            constraints: BoxConstraints.expand(height: 4.0),
-          )
-        ],
+    return InkWell(
+      onTap: () => print('点击Cell'),
+      child: Container(
+        height: 110.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            // 内容视图
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+              child: _cellContentView,
+            ),
+            // 分割线
+            Container(
+              margin: EdgeInsets.only(top: 4.0),
+              color: Color(0xffeaeaea),
+              constraints: BoxConstraints.expand(height: 4.0),
+            )
+          ],
+        ),
       ),
     );
   }
