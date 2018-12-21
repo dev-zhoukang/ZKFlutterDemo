@@ -11,7 +11,8 @@ class HomeNewsListPage extends StatefulWidget {
   HomeNewsListPageState createState() => HomeNewsListPageState();
 }
 
-class HomeNewsListPageState extends State<HomeNewsListPage> {
+class HomeNewsListPageState extends State<HomeNewsListPage>
+    with AutomaticKeepAliveClientMixin {
   List<NewsModel> _dataSource = [];
   List<String> _carouseImageUrls = [];
   int _page = 1;
@@ -38,6 +39,9 @@ class HomeNewsListPageState extends State<HomeNewsListPage> {
       // _refreshController.sendBack(false, RefreshStatus.completed);
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
