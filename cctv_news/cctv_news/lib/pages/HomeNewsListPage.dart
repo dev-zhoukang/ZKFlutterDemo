@@ -3,6 +3,7 @@ import 'package:cctv_news/components/HomeNewsCell.dart';
 import 'package:cctv_news/models/NewsModel.dart';
 import 'package:dio/dio.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomeNewsListPage extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class HomeNewsListPage extends StatefulWidget {
 
 class HomeNewsListPageState extends State<HomeNewsListPage> {
   List<NewsModel> _dataSource = [];
+  List<String> _carouseImageUrls = [];
   int _page = 1;
   RefreshController _refreshController;
 
@@ -23,6 +25,10 @@ class HomeNewsListPageState extends State<HomeNewsListPage> {
     print('zhoukang===>$models\n');
     setState(() {
       _dataSource.addAll(models);
+      if (_dataSource.length >= 3) {
+        _carouseImageUrls =
+            List.generate(3, (index) => _dataSource[index].imgUrlString);
+      }
     });
     if (isPulldown) {
       _refreshController?.sendBack(false, RefreshStatus?.idle);
@@ -53,6 +59,26 @@ class HomeNewsListPageState extends State<HomeNewsListPage> {
         child: ListView.builder(
           itemCount: _dataSource.length,
           itemBuilder: (context, index) {
+            if (index == 0) {
+              return Container(
+                constraints: BoxConstraints.expand(height: 200.0),
+                color: Color(0xeaeaea),
+                child: Swiper(
+                  loop: true,
+                  autoplay: true,
+                  autoplayDisableOnInteraction: false,
+                  itemCount: 3,
+                  pagination: SwiperPagination(),
+                  itemBuilder: (context, index) {
+                    return Image.network(
+                      _carouseImageUrls[index],
+                      fit: BoxFit.cover,
+                    );
+                  },
+                ),
+              );
+            }
+            index -= 1;
             return HomeNewsCell(
               model: _dataSource[index],
             );
