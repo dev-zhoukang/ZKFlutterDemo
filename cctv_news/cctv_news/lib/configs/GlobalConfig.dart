@@ -7,7 +7,8 @@ class GlobalConfig {
 
 class _ColorConfig {
   const _ColorConfig();
-  final Color defaultThemeColor = const Color(0xff245DB4);
+  final Color themeColor = const Color(0xff245DB4);
+  final Color titleColor = const Color(0xff333333);
 }
 
 class _TextThemeConfig {

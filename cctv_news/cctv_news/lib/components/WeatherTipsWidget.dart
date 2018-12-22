@@ -72,13 +72,13 @@ class _WeatherTipsWidgetState extends State<WeatherTipsWidget> {
                 Icon(
                   Icons.location_on,
                   size: 18.0,
-                  color: GlobalConfig.colorConfig.defaultThemeColor,
+                  color: GlobalConfig.colorConfig.themeColor,
                 ),
                 Text(
                   '切换城市',
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: GlobalConfig.colorConfig.defaultThemeColor),
+                      color: GlobalConfig.colorConfig.themeColor),
                 )
               ],
             ),

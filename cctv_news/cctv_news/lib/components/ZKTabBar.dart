@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cctv_news/configs/GlobalConfig.dart';
 
 class ZKTabBar extends StatelessWidget {
   final TabController tabController;
@@ -23,9 +24,9 @@ class ZKTabBar extends StatelessWidget {
           Container(
             height: 49.5,
             child: TabBar(
-              labelColor: Color(0xff4574B3),
+              labelColor: GlobalConfig.colorConfig.themeColor,
+              unselectedLabelColor: GlobalConfig.colorConfig.titleColor,
               indicatorColor: Colors.transparent,
-              unselectedLabelColor: Color(0xff333333),
               indicatorSize: TabBarIndicatorSize.label,
               tabs: tabs,
               controller: tabController,
@@ -56,7 +57,8 @@ class ZKTab extends StatelessWidget {
           Icon(icon),
           Text(
             this.title,
-            style: TextStyle(fontSize: 11.5, height: 0.9, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                fontSize: 11.5, height: 0.9, fontWeight: FontWeight.w400),
           ),
         ],
       ),
