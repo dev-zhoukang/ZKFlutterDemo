@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cctv_news/models/NewsModel.dart';
+import 'package:cctv_news/pages/NewsDetailPage.dart';
 
 class HomeNewsCell extends StatelessWidget {
   final NewsModel model;
@@ -75,7 +76,11 @@ class HomeNewsCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => print('点击Cell'),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return NewsDetailPage();
+        }));
+      },
       child: Container(
         height: 110.0,
         child: Column(
