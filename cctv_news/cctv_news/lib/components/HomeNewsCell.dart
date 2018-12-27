@@ -24,7 +24,7 @@ class HomeNewsCell extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15.0,
                     color: Color(0xff111111),
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                   ),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -32,7 +32,6 @@ class HomeNewsCell extends StatelessWidget {
                 Container(
                   width: 50.0,
                   height: 20.0,
-                  margin: EdgeInsets.only(top: 6),
                   child: ButtonTheme(
                     buttonColor: Color(0xff1C64CF),
                     shape: StadiumBorder(),
