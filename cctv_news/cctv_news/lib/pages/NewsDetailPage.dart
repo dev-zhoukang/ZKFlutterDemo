@@ -39,7 +39,15 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       appBar: AppBar(
         title: Text('新闻详情'),
       ),
-      body: Text(_model?.content),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: SingleChildScrollView(
+              child: Text(_model?.content ?? '加载中...'),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
