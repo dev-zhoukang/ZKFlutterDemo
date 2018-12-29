@@ -76,8 +76,10 @@ class HomeNewsCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context){
-          return NewsDetailPage();
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return NewsDetailPage(
+            newsID: model.id,
+          );
         }));
       },
       child: Container(

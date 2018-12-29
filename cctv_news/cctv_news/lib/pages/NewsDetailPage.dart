@@ -4,6 +4,11 @@ import 'dart:async';
 import 'dart:convert';
 
 class NewsDetailPage extends StatefulWidget {
+  final String newsID;
+  NewsDetailPage({
+    @required this.newsID,
+  });
+
   _NewsDetailPageState createState() => _NewsDetailPageState();
 }
 
@@ -11,8 +16,10 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
   NewsDetailModel _model;
 
   Future<Null> getNewsContent() async {
-    final response = await http.get(
-        'http://api.cportal.cctv.com/api/rest/articleInfo?id=Arti9ldDiJbWDaaiNAn946e1181226&cb=test.setMyArticalContent');
+    final String urlString =
+        'http://api.cportal.cctv.com/api/rest/articleInfo?cb=test.setMyArticalContent&id=${widget.newsID}';
+
+    final response = await http.get(urlString);
     String body =
         response.body.replaceAll(RegExp(r'test.setMyArticalContent\('), '');
     body = body.substring(0, body.length - 1);
