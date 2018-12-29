@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
-import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 import 'dart:convert';
 
 class NewsDetailPage extends StatefulWidget {
@@ -10,13 +8,23 @@ class NewsDetailPage extends StatefulWidget {
 }
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
-  Future<String> getNewsContent() async {
-    Dio http = Dio();
-    var response = await http.get(
-        'http://api.cportal.cctv.com/api/rest/articleInfo?id=ArtikCPksjo4zlQEZuocU6z8181226&cb=test.setMyArticalContent');
-    // response = response.replaceAll(new RegExp(r'test.setMyArticalContent'), '');
-    print('=======>$response');
-    return response.toString();
+  NewsDetailModel _model;
+
+  Future<Null> getNewsContent() async {
+    final response = await http.get(
+        'http://api.cportal.cctv.com/api/rest/articleInfo?id=Arti9ldDiJbWDaaiNAn946e1181226&cb=test.setMyArticalContent');
+    String body =
+        response.body.replaceAll(RegExp(r'test.setMyArticalContent\('), '');
+    body = body.substring(0, body.length - 1);
+    if (response.statusCode == 200) {
+      Map dataDict = json.decode(body) as Map;
+      NewsDetailModel model = NewsDetailModel.fromJson(dataDict);
+      setState(() {
+        _model = model;
+      });
+    } else {
+      throw (Exception('加载新闻详情出错'));
+    }
   }
 
   @override
@@ -31,9 +39,30 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       appBar: AppBar(
         title: Text('新闻详情'),
       ),
-      body: Center(
-        child: Text('data'),
-      ),
+      body: Text(_model?.content),
+    );
+  }
+}
+
+class NewsDetailModel {
+  final String title;
+  final String content;
+  final String source;
+  final String detailUrl;
+
+  NewsDetailModel({
+    this.title,
+    this.content,
+    this.source,
+    this.detailUrl,
+  });
+
+  factory NewsDetailModel.fromJson(Map<String, dynamic> map) {
+    return NewsDetailModel(
+      title: map['title'],
+      content: map['content'],
+      source: map['source'],
+      detailUrl: map['url'],
     );
   }
 }
