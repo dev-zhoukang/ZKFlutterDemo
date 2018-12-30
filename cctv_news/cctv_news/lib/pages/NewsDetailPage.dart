@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'package:cctv_news/models/NewsModel.dart';
 
 class NewsDetailPage extends StatefulWidget {
   final String newsID;
@@ -13,7 +14,7 @@ class NewsDetailPage extends StatefulWidget {
 }
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
-  NewsDetailModel _model;
+  NewsModel _model;
 
   Future<Null> getNewsContent() async {
     final String urlString =
@@ -25,7 +26,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     body = body.substring(0, body.length - 1);
     if (response.statusCode == 200) {
       Map dataDict = json.decode(body) as Map;
-      NewsDetailModel model = NewsDetailModel.fromJson(dataDict);
+      NewsModel model = NewsModel.fromDict(dataDict);
       setState(() {
         _model = model;
       });
@@ -55,29 +56,6 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           )
         ],
       ),
-    );
-  }
-}
-
-class NewsDetailModel {
-  final String title;
-  final String content;
-  final String source;
-  final String detailUrl;
-
-  NewsDetailModel({
-    this.title,
-    this.content,
-    this.source,
-    this.detailUrl,
-  });
-
-  factory NewsDetailModel.fromJson(Map<String, dynamic> map) {
-    return NewsDetailModel(
-      title: map['title'],
-      content: map['content'],
-      source: map['source'],
-      detailUrl: map['url'],
     );
   }
 }
