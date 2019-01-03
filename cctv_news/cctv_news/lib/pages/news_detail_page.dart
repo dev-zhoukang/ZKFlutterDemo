@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:cctv_news/models/news_model.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_inappbrowser/flutter_inappbrowser.dart';
 
 class NewsDetailPage extends StatefulWidget {
   final String newsID;
@@ -15,6 +18,8 @@ class NewsDetailPage extends StatefulWidget {
 
 class _NewsDetailPageState extends State<NewsDetailPage> {
   NewsModel _model;
+  InAppWebView webView;
+  InAppWebViewController inAppWebViewController;
 
   Future<Null> getNewsContent() async {
     final String urlString =
@@ -27,6 +32,11 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     if (response.statusCode == 200) {
       Map dataDict = json.decode(body) as Map;
       NewsModel model = NewsModel.fromNewsDetailDict(dataDict);
+
+      var documentDir = await getApplicationDocumentsDirectory();
+      String documentPath = documentDir.path;
+      File contentFile = File('$documentPath/test.data');
+
       setState(() {
         _model = model;
       });
@@ -44,18 +54,51 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('新闻详情'),
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: SingleChildScrollView(
-              child: Text(_model?.content ?? '加载中...'),
-            ),
-          )
-        ],
-      ),
+        appBar: AppBar(
+          title: Text('新闻详情'),
+        ),
+        body: NativeWebView(
+          webUrl: 'lib/pages/test_news.html',
+          webRect: Rect.fromLTRB(
+              0.0,
+              0.0,
+              MediaQuery.of(context).size.width,
+              MediaQuery.of(context).size.height -
+                  AppBar().preferredSize.height -
+                  MediaQuery.of(context).padding.top),
+        ));
+  }
+}
+
+class NativeWebView extends StatelessWidget {
+  String webUrl;
+  final Rect webRect;
+  InAppWebViewController webViewController;
+
+  NativeWebView({Key key, this.webUrl, this.webRect}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    InAppWebView webWidget = new InAppWebView(
+        initialUrl: webUrl,
+        initialHeaders: {},
+        initialOptions: {},
+        onWebViewCreated: (InAppWebViewController controller) {
+          webViewController = controller;
+        },
+        onLoadStart: (InAppWebViewController controller, String url) {
+          print("started -------------- $url");
+          this.webUrl = url;
+        },
+        onProgressChanged: (InAppWebViewController controller, int progress) {
+          double prog = progress / 100;
+          print('prog --------- $prog');
+        });
+
+    return Container(
+      width: webRect.width,
+      height: webRect.height,
+      child: webWidget,
     );
   }
 }
