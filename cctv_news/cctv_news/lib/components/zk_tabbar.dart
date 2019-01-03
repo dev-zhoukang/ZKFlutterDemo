@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/configs/GlobalConfig.dart';
+import 'package:cctv_news/configs/global_config.dart';
 
 class ZKTabBar extends StatelessWidget {
   final TabController tabController;

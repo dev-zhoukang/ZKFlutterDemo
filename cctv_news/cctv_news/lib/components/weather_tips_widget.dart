@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/configs/GlobalConfig.dart';
+import 'package:cctv_news/configs/global_config.dart';
 
 /// 首页天气提醒小组件
 class WeatherTipsWidget extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/models/NewsModel.dart';
-import 'package:cctv_news/pages/NewsDetailPage.dart';
+import 'package:cctv_news/models/news_model.dart';
+import 'package:cctv_news/pages/news_detail_page.dart';
 
 class HomeNewsCell extends StatelessWidget {
   final NewsModel model;

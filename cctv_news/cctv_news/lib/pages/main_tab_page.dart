@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/components/ZKTabBar.dart';
-import 'package:cctv_news/pages/HomeNewsListPage.dart';
+import 'package:cctv_news/components/zk_tabbar.dart';
+import 'package:cctv_news/pages/home_newslist_page.dart';
 
 class MainTabPage extends StatefulWidget {
   @override

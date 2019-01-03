@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/components/HomeNewsCell.dart';
-import 'package:cctv_news/models/NewsModel.dart';
+import 'package:cctv_news/components/home_news_cell.dart';
+import 'package:cctv_news/models/news_model.dart';
 import 'package:dio/dio.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:cctv_news/components/WeatherTipsWidget.dart';
+import 'package:cctv_news/components/weather_tips_widget.dart';
 
 class HomeNewsListPage extends StatefulWidget {
   @override

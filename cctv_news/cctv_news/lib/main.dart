@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cctv_news/pages/MainTabPage.dart';
+import 'package:cctv_news/pages/main_tab_page.dart';
 
 void main() => runApp(MainApp());
 
