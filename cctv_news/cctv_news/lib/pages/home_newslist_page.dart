@@ -114,7 +114,7 @@ Future<List<NewsModel>> requestData({@required int page}) async {
   var rawDatas = (dataDict['itemList'] as List);
   var models = rawDatas.map((map) {
     map = map as Map;
-    NewsModel model = NewsModel.fromDict(map);
+    NewsModel model = NewsModel.fromNewsListDict(map);
     return model;
   }).toList();
   return models;

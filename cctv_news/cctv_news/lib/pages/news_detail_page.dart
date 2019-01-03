@@ -26,7 +26,7 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     body = body.substring(0, body.length - 1);
     if (response.statusCode == 200) {
       Map dataDict = json.decode(body) as Map;
-      NewsModel model = NewsModel.fromDict(dataDict);
+      NewsModel model = NewsModel.fromNewsDetailDict(dataDict);
       setState(() {
         _model = model;
       });

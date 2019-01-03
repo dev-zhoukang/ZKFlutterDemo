@@ -17,7 +17,16 @@ class NewsModel {
     this.detailUrl,
   });
 
-  NewsModel.fromDict(Map<String, dynamic> map)
+  NewsModel.fromNewsDetailDict(Map<String, dynamic> map)
+      : id = map['id'],
+        title = map['title'],
+        publishDate = DateTime.parse(map['pubtime']),
+        imgUrlString = map['logo'],
+        content = map['content'],
+        source = map['source'],
+        detailUrl = '';
+
+  NewsModel.fromNewsListDict(Map<String, dynamic> map)
       : title = map['itemTitle'] ?? '新闻标题解析异常',
         publishDate =
             DateTime.fromMillisecondsSinceEpoch(int.parse(map['pubDate'])),
