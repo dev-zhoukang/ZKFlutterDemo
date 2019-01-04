@@ -33,6 +33,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
       Map dataDict = json.decode(body) as Map;
       NewsModel model = NewsModel.fromNewsDetailDict(dataDict);
 
+      _writeHtmlContentToDisk('test');
+
       var documentDir = await getApplicationDocumentsDirectory();
       String documentPath = documentDir.path;
       File contentFile = File('$documentPath/test.data');
@@ -43,6 +45,18 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
     } else {
       throw (Exception('加载新闻详情出错'));
     }
+  }
+
+  Future<Null> _writeHtmlContentToDisk(String dataString) async {
+    String filePath = await _filePath;
+    File newsFile = File(filePath);
+    await newsFile.writeAsString(dataString);
+  }
+
+  Future<String> get _filePath async {
+    Directory docDir = await getApplicationDocumentsDirectory();
+    String fullPath = '${docDir.path}/news.txt';
+    return fullPath;
   }
 
   @override
@@ -58,14 +72,8 @@ class _NewsDetailPageState extends State<NewsDetailPage> {
           title: Text('新闻详情'),
         ),
         body: NativeWebView(
-          webUrl: 'lib/pages/test_news.html',
-          webRect: Rect.fromLTRB(
-              0.0,
-              0.0,
-              MediaQuery.of(context).size.width,
-              MediaQuery.of(context).size.height -
-                  AppBar().preferredSize.height -
-                  MediaQuery.of(context).padding.top),
+          webUrl: 'assets/test_news.html',
+          webRect: Rect.fromLTRB(0.0, 0.0, 200.0, 200.0),
         ));
   }
 }
