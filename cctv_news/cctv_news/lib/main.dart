@@ -9,7 +9,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       showSemanticsDebugger: false,
       debugShowCheckedModeBanner: false,
-      title: 'CCTV NRES',
+      title: 'CCTV NEWS',
       home: MainTabPage(),
     );
   }
