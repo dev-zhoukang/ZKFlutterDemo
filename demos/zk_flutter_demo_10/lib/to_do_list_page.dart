@@ -57,7 +57,7 @@ class _ViewModel {
             deleteItemToolTip: 'Delete',
             deleteItemIcon: Icons.delete))
         .toList();
-    if (store.state.listState == ListState.listThisNewItem) {
+    if (store.state.listState == ListState.listWithNewItem) {
       items.add(_EmptyItemViewModel(
           hint: 'Type the next task here',
           onCreateItem: (String title) {
@@ -88,7 +88,7 @@ class ToDoListPage extends StatelessWidget {
             ),
             body: ListView(
               children: viewModel.items
-                  .map((_BaseItemViewModel item) => _createWidget(item)),
+                  .map((_BaseItemViewModel item) => _createWidget(item)).toList(),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: viewModel.onAddItem,

@@ -12,5 +12,5 @@ class AppState {
 
 enum ListState {
   listOnly,
-  listThisNewItem,
+  listWithNewItem,
 }
