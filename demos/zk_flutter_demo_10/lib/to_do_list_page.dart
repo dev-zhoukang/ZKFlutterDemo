@@ -15,7 +15,7 @@ class _EmptyItemViewModel extends _BaseItemViewModel {
   final Function(String) onCreateItem;
   final String createItemToolTip;
 
-  _EmptyItemViewModel({this.hint, this.onCreateItem, this.createItemToolTip});
+  _EmptyItemViewModel(this.hint, this.onCreateItem, this.createItemToolTip);
 }
 
 @immutable
@@ -26,10 +26,11 @@ class _ToDoItemViewModel extends _BaseItemViewModel {
   final IconData deleteItemIcon;
 
   _ToDoItemViewModel(
-      {this.title,
-      this.onDeleteItem,
-      this.deleteItemToolTip,
-      this.deleteItemIcon});
+    this.title,
+    this.onDeleteItem,
+    this.deleteItemToolTip,
+    this.deleteItemIcon,
+  );
 }
 
 class _ViewModel {
@@ -40,69 +41,64 @@ class _ViewModel {
   final IconData newItemIcon;
 
   _ViewModel(
-      {this.pageTitle,
-      this.items,
-      this.onAddItem,
-      this.newItemToolTip,
-      this.newItemIcon});
+    this.pageTitle,
+    this.items,
+    this.onAddItem,
+    this.newItemToolTip,
+    this.newItemIcon,
+  );
 
   factory _ViewModel.create(Store<AppState> store) {
     List<_BaseItemViewModel> items = store.state.todos
-        .map((ToDoModel item) => _ToDoItemViewModel(
-            title: item.title,
-            onDeleteItem: () {
+        .map((ToDoModel item) => _ToDoItemViewModel(item.title, () {
               store.dispatch(RemoveItemAction(item));
               store.dispatch(SaveListAction());
-            },
-            deleteItemToolTip: 'Delete',
-            deleteItemIcon: Icons.delete))
+            }, 'Delete', Icons.delete) as _BaseItemViewModel)
         .toList();
+
     if (store.state.listState == ListState.listWithNewItem) {
-      items.add(_EmptyItemViewModel(
-          hint: 'Type the next task here',
-          onCreateItem: (String title) {
-            store.dispatch(DisplayListOnlyAction());
-            store.dispatch(AddItemAction(ToDoModel(title)));
-            store.dispatch(SaveListAction());
-          },
-          createItemToolTip: 'Add'));
+      items.add(_EmptyItemViewModel('Type the next task here', (String title) {
+        store.dispatch(DisplayListOnlyAction());
+        store.dispatch(AddItemAction(ToDoModel(title)));
+        store.dispatch(SaveListAction());
+      }, 'Add'));
     }
 
     return _ViewModel(
-        pageTitle: 'ToDo',
-        items: items,
-        onAddItem: () => store.dispatch(DisplayListWithNewItemAction()),
-        newItemToolTip: 'Add new to do item',
-        newItemIcon: Icons.add);
+        'To Do',
+        items,
+        () => store.dispatch(DisplayListWithNewItemAction()),
+        'Add new to-do item',
+        Icons.add);
   }
 }
 
 class ToDoListPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return StoreConnector<AppState, _ViewModel>(
-      converter: (Store<AppState> store) => _ViewModel.create(store),
-      builder: (BuildContext context, _ViewModel viewModel) => Scaffold(
-            appBar: AppBar(
-              title: Text(viewModel.pageTitle),
+  Widget build(BuildContext context) => StoreConnector<AppState, _ViewModel>(
+        converter: (Store<AppState> store) => _ViewModel.create(store),
+        builder: (BuildContext context, _ViewModel viewModel) => Scaffold(
+              appBar: AppBar(
+                title: Text(viewModel.pageTitle),
+              ),
+              body: ListView(
+                  children: viewModel.items
+                      .map((_BaseItemViewModel item) => _createWidget(item))
+                      .toList()),
+              floatingActionButton: FloatingActionButton(
+                onPressed: viewModel.onAddItem,
+                tooltip: viewModel.newItemToolTip,
+                child: Icon(viewModel.newItemIcon),
+              ),
             ),
-            body: ListView(
-              children: viewModel.items
-                  .map((_BaseItemViewModel item) => _createWidget(item)).toList(),
-            ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: viewModel.onAddItem,
-              tooltip: viewModel.newItemToolTip,
-              child: Icon(viewModel.newItemIcon),
-            ),
-          ),
-    );
-  }
+      );
 
   Widget _createWidget(_BaseItemViewModel item) {
     if (item is _EmptyItemViewModel) {
+      print('111111');
       return _createEmptyItemWidget(item);
     } else {
+      print('22222');
       return _createToDoItemWidget(item);
     }
   }
@@ -112,7 +108,9 @@ class ToDoListPage extends StatelessWidget {
           TextField(
             onSubmitted: item.onCreateItem,
             autofocus: true,
-            decoration: InputDecoration(hintText: item.createItemToolTip),
+            decoration: InputDecoration(
+              hintText: item.createItemToolTip,
+            ),
           )
         ],
       );
@@ -122,10 +120,8 @@ class ToDoListPage extends StatelessWidget {
           Text(item.title),
           FlatButton(
             onPressed: item.onDeleteItem,
-            child: Icon(
-              item.deleteItemIcon,
-              semanticLabel: item.deleteItemToolTip,
-            ),
+            child: Icon(item.deleteItemIcon,
+                semanticLabel: item.deleteItemToolTip),
           ),
         ],
       );

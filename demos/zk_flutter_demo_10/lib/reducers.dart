@@ -21,4 +21,7 @@ final Reducer<ListState> listStateReducer = combineReducers<ListState>([
 
 ListState _displayListOnly(ListState listState, DisplayListOnlyAction action) => ListState.listOnly;
 
-ListState _displayListWithNewItem(ListState listState, DisplayListWithNewItemAction action) => ListState.listWithNewItem;
+ListState _displayListWithNewItem(ListState listState, DisplayListWithNewItemAction action) {
+  print('=====');
+  return ListState.listWithNewItem;
+}
